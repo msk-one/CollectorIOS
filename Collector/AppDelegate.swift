@@ -7,15 +7,25 @@
 //
 
 import UIKit
+import Parse
+import Bolts
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        Parse.enableLocalDatastore()
+        let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
+            ParseMutableClientConfiguration.applicationId = "WJnfIeh6wlhPUjkZ0xJpIf4RoGHmbIP9ICyO4ada"
+            ParseMutableClientConfiguration.clientKey = "DNZfoTm6zRoyoFUOzymfpxkX5kKQu7jSlrL6LTkg"
+            ParseMutableClientConfiguration.server = "http://services.mini.pw.edu.pl:11021/parse/"
+        })
+        
+        Parse.initializeWithConfiguration(parseConfiguration)
+        
         return true
     }
 
